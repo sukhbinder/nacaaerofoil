@@ -1,0 +1,29 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module nacalib ! in 
+    interface  ! in :nacalib
+        subroutine naca4_cambered(m,p,t,c,n,xc,xu,yu,xl,yl) ! in :nacalib:naca.f90
+            real(kind=8) :: m
+            real(kind=8) :: p
+            real(kind=8) :: t
+            real(kind=8) :: c
+            integer(kind=4), optional,check(len(xc)>=n),depend(xc) :: n=len(xc)
+            real(kind=8) dimension(n) :: xc
+            real(kind=8) dimension(n),depend(n),intent(out) :: xu
+            real(kind=8) dimension(n),depend(n),intent(out) :: yu
+            real(kind=8) dimension(n),depend(n),intent(out) :: xl
+            real(kind=8) dimension(n),depend(n),intent(out) :: yl
+        end subroutine naca4_cambered
+        subroutine naca4_symmetric(t,c,n,x,y) ! in :nacalib:naca.f90
+            real(kind=8) :: t
+            real(kind=8) :: c
+            integer(kind=4), optional,check(len(x)>=n),depend(x) :: n=len(x)
+            real(kind=8) dimension(n) :: x
+            real(kind=8) dimension(n),depend(n),intent(out) :: y
+        end subroutine naca4_symmetric
+    end interface 
+end python module nacalib
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
